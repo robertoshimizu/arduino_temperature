@@ -58,9 +58,12 @@ io.on("connection", (socket) => {
   console.log("socket.io connection")
   // Switches the port into "flowing mode"
   port.pipe(parser)
-  parser.on("data", function (data) {
-    socket.emit("arduino", data)
-    console.log(data)
+    parser.on("data", function (data) {
+        arraia = data.split(';')
+        var temperatura = arraia[1]
+        
+    socket.emit("arduino", temperatura)
+    console.log(temperatura)
     
   })
   
