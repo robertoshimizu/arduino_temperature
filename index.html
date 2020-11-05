@@ -3,66 +3,39 @@
 
 <head>
     <title>Socket.IO chat</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font: 13px Helvetica, Arial;
-        }
-
-        form {
-            background: #000;
-            padding: 3px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        form input {
-            border: 0;
-            padding: 10px;
-            width: 90%;
-            margin-right: 0.5%;
-        }
-
-        form button {
-            width: 9%;
-            background: rgb(130, 224, 255);
-            border: none;
-            padding: 10px;
-        }
-
-        #messages {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        #messages li {
-            padding: 5px 10px;
-        }
-
-        #messages li:nth-child(odd) {
-            background: #eee;
-        }
-    </style>
+    
 </head>
 
 <body>
-    <h1>Arduino Web Server</h1>
+    <div id="app">
+        <h1> {{ title }}</h1>
+        <p>{{ datar }}</p>
     <ul id="messages"></ul>
-    <!-- <form action="">
+    <form action="">
         <input id="m" autocomplete="off" /><button>Send</button>
-    </form> -->
+    </form>
+    </div>
+    
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            title: 'Arduino Web Server',
+            datar:''
+        },
+        methods: {
+            plus: function () {
+                this.a++
+            }
+        }        
+    })
+
+
     const $messages = document.getElementById('messages');
     const newItem = (content) => {
             const item = document.createElement('p');
